@@ -21,22 +21,14 @@ sub calcular{
     #Realizamos primero las multiplicaciones y las divisiones
     while ($operacion =~ /(-?\d+)([\*\/])(\d+)/){
         my ($primero, $operador, $segundo) = ($1, $2, $3);
-        if ($temporal eq (*)){
-	    $temporal = $primero * $segundo;
-	} else {
-	    $temporal = $primero / $segundo;
-	}
+        my $temporal = ($operador eq '*') ? $primero * $segundo : $primero / $segundo;
         $resultado+=$operacion;
     }
 
     #Realizamos después las sumas y las restas
     while ($operacion =~ /(-?\d+)([\+\-])(\d+)/){
         my ($primero, $operador, $segundo) = ($1, $2, $3);
-	if ($temporal eq (+)){
-	    $temporal = $primero + $segundo;
-	} else {
-	    $temporal = $primero - $segundo;
-	}
+	my $temporal = ($operador eq '+') ? $primero + $segundo : $primero - $segundo;
         $resultado+=$operacion;
     }
 
