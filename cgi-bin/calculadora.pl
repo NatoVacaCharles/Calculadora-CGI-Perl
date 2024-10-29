@@ -8,7 +8,7 @@ my $calcular = CGI -> new;
 my $operacion = $calcular->param('calcular');
 my $resultado;
 
-if ($operacion =~ /^d+\+\-\*\/]\d+*$/){
+if ($operacion =~ /^-?\d+([\+\-\*\/]\d+)*$/){
     $resultado=calcular($operacion);
     print "<h3>El resultado $operacion es $resultado<h3>";
 } else {
