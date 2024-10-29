@@ -2,3 +2,24 @@ h1{
     text-align: center;
     padding: 10px;
 }
+body{
+    text-align: center;
+    background-color: sienna;
+}
+form{
+    align-items: center;
+    display: flex;
+    padding:10px;
+    flex-direction: column;
+}
+input{
+    width: 30%;
+    padding: 10px;
+    margin: 8px
+}
+button{
+    cursor: pointer;
+}
+button:hover{
+    transform: scale(1.2);
+}
