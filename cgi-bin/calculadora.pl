@@ -17,19 +17,19 @@ if ($operacion =~ /^-?\d+([\+\-\*\/]\d+)*$/){
 
 sub calcular{
     my ($operacion)=@_;
-    my $resultado=0;
+
     #Realizamos primero las multiplicaciones y las divisiones
     while ($operacion =~ /(-?\d+)([\*\/])(\d+)/){
         my ($primero, $operador, $segundo) = ($1, $2, $3);
         my $temporal = ($operador eq '*') ? $primero * $segundo : $primero / $segundo;
-        $resultado+=$operacion;
+        $operacion = s/\Q$primero$operador$segundo\E/$temporal/;
     }
 
     #Realizamos después las sumas y las restas
     while ($operacion =~ /(-?\d+)([\+\-])(\d+)/){
         my ($primero, $operador, $segundo) = ($1, $2, $3);
 	my $temporal = ($operador eq '+') ? $primero + $segundo : $primero - $segundo;
-        $resultado+=$operacion;
+        $operacion = s/\Q$primero$operador$segundo\E/$temporal/;
     }
 
     return $operacion;
