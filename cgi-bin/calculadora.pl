@@ -19,8 +19,15 @@ if ($operacion =~ /^-?\d+(\.\d+)?([\+\-\*\/]\d+(\.\d+)?)*$/){
 
 print $calcular -> end_html;
 
-sub calcular{
-    my ($operacion)=@_;
+sub calcular {
+    my ($operacion) = @_;
+    my $resultado;
+    $resultado=sumar(multiplicar($operacion));
+    return $resultado;
+}
+
+sub multiplicar{
+    my ($operacion) = @_;
 
     # Se realizan las multiplicaciones y las divisiones primero
     while ($operacion =~ /(-?\d+)(\.\d+)?([\*\/])(-?\d+)(\.\d+)?/) {
@@ -34,6 +41,12 @@ sub calcular{
         my $temporal = ($operador eq '*') ? $primero * $segundo : $primero / $segundo;
         $operacion =~ s/\Q$primero$operador$segundo\E/$temporal/;
     }
+
+    return $operacion;
+}
+
+sub sumar{
+    my ($operacion)=@_;
 
     # Luego realizamos las sumas y restas en el orden que aparecen
     while ($operacion =~ /(-?\d+)(\.\d+)?([\+\-])(-?\d+)(\.\d+)?/) {
