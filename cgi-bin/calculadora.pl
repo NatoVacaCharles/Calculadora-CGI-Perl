@@ -12,14 +12,14 @@ my $resultado;
 
 if ($operacion =~ /^-?\d+(\.\d+)?([\+\-\*\/]\d+(\.\d+)?)*$/){
     $resultado=calcular($operacion);
-    print "<h3>El resultado $operacion es $resultado</h3>";
+    print "<h1>El resultado de $operacion es $resultado</h1>";
 } else {
-    print "<h3>Hubo un error en el resultado, revise su operación.</h3>";
+    print "<h1>Hubo un error en el resultado, revise su operación.</h1>";
 }
 
 print $calcular -> end_html;
 
-sub calcular {
+sub calcular{
     my ($operacion) = @_;
     my $resultado;
     $resultado=sumar(multiplicar($operacion));
@@ -29,7 +29,6 @@ sub calcular {
 sub multiplicar{
     my ($operacion) = @_;
 
-    # Se realizan las multiplicaciones y las divisiones primero
     while ($operacion =~ /(-?\d+)(\.\d+)?([\*\/])(-?\d+)(\.\d+)?/) {
         my ($primero, $operador, $segundo) = ($1, $3, $4);
         if (defined $2){
@@ -48,7 +47,6 @@ sub multiplicar{
 sub sumar{
     my ($operacion)=@_;
 
-    # Luego realizamos las sumas y restas en el orden que aparecen
     while ($operacion =~ /(-?\d+)(\.\d+)?([\+\-])(-?\d+)(\.\d+)?/) {
         my ($primero, $operador, $segundo) = ($1, $3, $4);
         if (defined $2){
